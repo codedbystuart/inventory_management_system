@@ -18,6 +18,24 @@ class ProductController {
       return next(error);
     }
   }
+
+  static async getOneProduct(req, res, next) {
+    try {
+      const product = await ProductService.getOneProduct(req.params.id);
+      if (!product) {
+        return res.status(404).json({
+          status: res.statusCode,
+          message: `Sorry product with id ${req.params.id} does not exist`
+        });
+      }
+      return res.status(200).json({
+        status: res.statusCode,
+        data: product
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
 };
 
 module.exports = ProductController;
