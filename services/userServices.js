@@ -2,7 +2,7 @@
 const db = require('../models');
 const { User } = db;
 
-class userServices {
+class UserServices {
   static async findUserbyEmail (email) {
     try {
       const user = await User.findOne({where: {email} });
@@ -22,4 +22,4 @@ static async createUser (user) {
 
 }
 
-module.exports = userServices;
+module.exports = UserServices;
