@@ -31,6 +31,17 @@ class ProductService {
       throw error;
     }
   };
+
+  static async deleteProduct(id) {
+    try {
+      const productToDelete = await Product.findOne({ where: { id: Number(id) } });
+      if (!productToDelete) return null;
+      await Product.destroy({ where: { id: Number(id) } });
+      return productToDelete;
+    } catch (error) {
+      throw error;
+    }
+  }
 };
 
 module.exports = ProductService;
