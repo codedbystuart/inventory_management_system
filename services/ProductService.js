@@ -9,7 +9,7 @@ class ProductService {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
   static async getOneProduct(id) {
     try {
@@ -19,7 +19,18 @@ class ProductService {
     } catch (error) {
       throw error;
     }
-  }
+  };
+
+  static async updateProduct(id, updatedProduct) {
+    try {
+      const product = await Product.findOne({ where: { id: Number(id) } });
+      if (!product) return null;
+      await Product.update(updatedProduct, { where: { id: Number(id) } });
+      return product;
+    } catch (error) {
+      throw error;
+    }
+  };
 };
 
 module.exports = ProductService;
