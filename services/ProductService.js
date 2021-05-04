@@ -2,6 +2,15 @@ const db = require('../models');
 const { Product } = db;
 
 class ProductService {
+  static async addProduct(product) {
+    try {
+      const productToAdd = await Product.create(product);
+      return productToAdd;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   static async getAllProducts() {
     try {
       const products = await Product.findAll();
