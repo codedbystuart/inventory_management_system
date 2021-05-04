@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { DB_HOST, DB_USERNAME, DB_PASSWORD } = process.env;
+const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_PORT } = process.env;
 
 module.exports = {
   "development": {
@@ -7,7 +7,7 @@ module.exports = {
     "password": DB_PASSWORD,
     "database": "duuka_dev",
     "host": DB_HOST,
-    "port": 5432,
+    "port": DB_PORT,
     "dialect": "postgres"
   },
   "test": {
@@ -15,7 +15,7 @@ module.exports = {
     "password": DB_PASSWORD,
     "database": "duuka_test",
     "host": DB_HOST,
-    "port": 5432,
+    "port": DB_PORT,
     "dialect": "postgres"
   },
   "production": {
@@ -23,7 +23,7 @@ module.exports = {
     "password": DB_PASSWORD,
     "database": "duuka_production",
     "host": DB_HOST,
-    "port": 5432,
+    "port": DB_PORT,
     "dialect": "postgres"
   }
 };
