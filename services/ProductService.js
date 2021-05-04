@@ -10,6 +10,16 @@ class ProductService {
       throw error;
     }
   }
+
+  static async getOneProduct(id) {
+    try {
+      const product = await Product.findOne({ where: { id: Number(id) } });
+      if (!product) return null;
+      return product;
+    } catch (error) {
+      throw error;
+    }
+  }
 };
 
 module.exports = ProductService;
