@@ -1,6 +1,20 @@
 const ProductService = require('../services/ProductService');
 
 class ProductController {
+  static async addProduct(req, res, next) {
+    try {
+      const { product_name, description, price } = req.body;
+      const productToBeCreated = await ProductService.addProduct({ product_name, description, price });
+      return res.status(201).json({
+        status: res.statusCode,
+        message: 'Product successfully created!',
+        data: productToBeCreated
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
   static async getAllProducts(req, res, next) {
     try {
       const products = await ProductService.getAllProducts();
