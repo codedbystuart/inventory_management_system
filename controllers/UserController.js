@@ -40,6 +40,19 @@ static async AddUser (req,res,next) {
   }
 }
 
+static async users (req,res,next) {
+  try {
+    const users = await UserServices.users();
+    return res.status(200).json({
+      status: res.statusCode,
+      users: users
+    });
+
+  } catch (error) {
+    return next(error);
+  }
+}
+
 }
 
 module.exports = UserController;
