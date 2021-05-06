@@ -47,7 +47,24 @@ static async users (req,res,next) {
       status: res.statusCode,
       users: users
     });
-
+  } catch (error) {
+    return next(error);
+  }
+}
+static async singleUser(req,res,next){
+  try {
+    const user = await UserServices.singleUser(req.params.id);
+    if(!user){
+      return res.status(409).json({
+        status: res.statusCode,
+        message: 'User not found'
+      });
+    } else {
+      return res.status(200).json({
+        status:res.statusCode,
+        user
+      });
+    }
   } catch (error) {
     return next(error);
   }
