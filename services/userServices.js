@@ -27,6 +27,14 @@ static async users (users){
     throw error;
   }
 }
+static async singleUser (id) {
+  try{
+    const user = await User.findOne({where: {id:Number(id)}});
+    return user;
+  } catch(error){
+    throw error;
+  }
+}
 }
 
 module.exports = UserServices;
