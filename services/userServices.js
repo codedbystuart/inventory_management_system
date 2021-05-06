@@ -19,7 +19,14 @@ static async createUser (user) {
     throw error;
   }
 }
-
+static async users (users){
+  try {
+    const getUsers = await User.findAll(users);
+    return getUsers;
+  } catch (error) {
+    throw error;
+  }
+}
 }
 
 module.exports = UserServices;
