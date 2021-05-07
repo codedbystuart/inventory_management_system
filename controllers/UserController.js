@@ -139,7 +139,7 @@ static async resetPassword (req, res, next) {
         message: 'user not found'
       });
     }else {
-      const resetPass = UserServices.updateUser(user, password);
+      const resetPass = UserServices.updateUser(user.id, password);
       return res.status(201).json({
         status: res.statusCode,
         message: 'Password reset sucessfully',
