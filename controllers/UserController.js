@@ -143,8 +143,28 @@ static async resetPassword (req, res, next) {
       return res.status(201).json({
         status: res.statusCode,
         message: 'Password reset sucessfully',
-        
       });
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
+
+static async deleteUser (req,res,next) {
+  try {
+    const id  = req.params.id;
+    if(!id) {
+      return res.status(409).json({
+        status: res.statusCode,
+        message: 'user not found'
+      });
+    } else {
+    const userToDelete = await UserServices.deleteUser(id);
+    return res.status(200).json({
+      status: res.statusCode,
+      message: 'user Deleted successfully',
+      userToDelete
+    });
     }
   } catch (error) {
     return next(error);
