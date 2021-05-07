@@ -8,6 +8,7 @@ router.get('/users',userController.users);
 router.get('/users/:id',userController.singleUser);
 router.post('/login',userController.login);
 router.patch('/update/:id',userController.updateUser);
+router.patch('/resetpassword/:email',userController.resetPassword);
 
 
 module.exports = router;
