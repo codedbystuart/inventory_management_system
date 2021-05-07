@@ -103,6 +103,32 @@ static async login(req, res, next){
   }
 }
 
+static async updateUser (req, res, next){
+  try {
+    const userToUpdate = {
+      name:req.body.name,
+      email:req.body.email,
+      phone: req.body.phone,
+      position: req.body.position
+    }
+    const response = await UserServices.updateUser(req.params.id,userToUpdate);
+    if(!response) {
+      return res.status(404).json({
+        status: res.statusCode,
+        message: 'User not found'
+      });
+    } else {
+      return res.status(200).json({
+        status: res.statusCode,
+        message: 'user updated successfully',
+        user: userToUpdate
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
+
 }
 
 module.exports = UserController;
