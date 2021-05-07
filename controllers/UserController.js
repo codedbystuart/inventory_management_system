@@ -132,18 +132,18 @@ static async updateUser (req, res, next){
 static async resetPassword (req, res, next) {
   try {
     const password = req.body.password;
-    const user = UserServices.findUserbyEmail(req.params.email);
+    const user = await UserServices.findUserbyEmail(req.params.email);
     if(!user){
       return res.status(404).json({
         status: res.statusCode,
         message: 'user not found'
       });
     }else {
-      // const resetPass = await UserServices.updateUser(user, password);
+      const resetPass = UserServices.updateUser(user, password);
       return res.status(201).json({
         status: res.statusCode,
         message: 'Password reset sucessfully',
-        user
+        
       });
     }
   } catch (error) {
