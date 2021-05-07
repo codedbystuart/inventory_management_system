@@ -78,8 +78,8 @@ static async login(req, res, next){
     const ifUserExists = await UserServices.findUserbyEmail(userToLogin.email);
     if(ifUserExists){
       const token  = await jwt.sign({ifUserExists},process.env.JWT_SECRETEKEY);
-      const unhashPass = await bcrypt.compare(userToLogin.password,ifUserExists.password);
-      if(unhashPass){
+      const comparePass = await bcrypt.compare(userToLogin.password,ifUserExists.password);
+      if(comparePass){
         return res.status(200).json({
           status: res.statusCode,
           message: 'Login successful',
@@ -122,6 +122,28 @@ static async updateUser (req, res, next){
         status: res.statusCode,
         message: 'user updated successfully',
         user: userToUpdate
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
+
+static async resetPassword (req, res, next) {
+  try {
+    const password = req.body.password;
+    const user = UserServices.findUserbyEmail(req.params.email);
+    if(!user){
+      return res.status(404).json({
+        status: res.statusCode,
+        message: 'user not found'
+      });
+    }else {
+      // const resetPass = await UserServices.updateUser(user, password);
+      return res.status(201).json({
+        status: res.statusCode,
+        message: 'Password reset sucessfully',
+        user
       });
     }
   } catch (error) {
