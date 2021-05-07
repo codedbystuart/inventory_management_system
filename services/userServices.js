@@ -45,6 +45,25 @@ static async updateUser (id,updatedUser) {
     throw error;
   }
 }
+static async findUserById (id) {
+  try {
+    const user = await User.findOne({where: {id:Number(id)}});
+    return user;
+  } catch (error) {
+    throw error
+  }
+}
+static async deleteUser(id) {
+  try {
+    const userToDelete = await User.findOne({where:{id:Number(id)}});
+    if(!userToDelete) return null;
+    await User.destroy({where: {id:Number(id)}});
+    return userToDelete;
+  } catch (error) {
+    throw error;
+  }
+}
+
 }
 
 module.exports = UserServices;
