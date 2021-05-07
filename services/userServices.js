@@ -35,6 +35,16 @@ static async singleUser (id) {
     throw error;
   }
 }
+static async updateUser (id,updatedUser) {
+  try {
+    const userToUpdate = await User.findOne({where: {id:Number(id)}});
+    if(!userToUpdate) return null;
+    await User.update(updatedUser, {where: {id:Number(id)}}); 
+    return userToUpdate;
+  } catch (error) {
+    throw error;
+  }
+}
 }
 
 module.exports = UserServices;
