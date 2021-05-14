@@ -12,6 +12,14 @@ static async findMaterialbyName (name) {
     throw error;
   }
 }
+static async createMaterial (material) {
+  try {
+    const rawMaterial = await Rawmaterial.create(material);
+    return rawMaterial;
+  } catch (error) {
+    throw error;
+  }
+}
 
 }
 
