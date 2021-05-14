@@ -62,6 +62,27 @@ static async getSingleRawmaterial(req,res,next) {
     return next(error);
   }
 }
+static async deleteRawMaterial(req, res, next) {
+  try {
+    const id = req.params.id;
+    const rawmaterial = await RawmaterialServices.getSingleMaterial(id);
+    if(!rawmaterial){
+      return res.status(409).json({
+        status: res.statusCode,
+        message: 'Rawmaterial not found'
+      });
+    } else {
+      const materialToDelete = await RawmaterialServices.deleteRawmaterial(req.params.id);
+      return res.status(200).json({
+        status: res.statusCode,
+        message: 'Rawmaterial deleted successfully',
+        materialToDelete
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
 }
 
 module.exports = RawmaterialController;
