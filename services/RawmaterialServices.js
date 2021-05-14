@@ -27,6 +27,15 @@ static async getAllMaterials () {
     throw error;
   }
 }
+static async getSingleMaterial (id) {
+  try {
+    const rawmaterial = await Rawmaterial.findOne({where:{id:Number(id)}});
+    if(!rawmaterial) return null;
+    return rawmaterial;
+  } catch (error) {
+    throw error;
+  }
+}
 }
 
 module.exports = RawmaterialServices;
