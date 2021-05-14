@@ -5,8 +5,7 @@ const { Rawmaterial } = db;
 class RawmaterialServices {
 static async findMaterialbyName (name) {
   try {
-    const material = await Rawmaterial.findOne({where: {name:name}});
-  if(!material) return null;
+    const material = await Rawmaterial.findOne({where: {name}});
   return material;
   } catch (error) {
     throw error;
