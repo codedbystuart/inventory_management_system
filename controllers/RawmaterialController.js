@@ -8,14 +8,14 @@ static async addRawmaterial (req, res, next) {
       name: req.body.name,
       cost: req.body.cost
     }
-    const ifRawmaterialExist = await RawmaterialServices.findMaterialbyName(rawMaterial.name);
+    const ifRawmaterialExist = await RawmaterialServices.findMaterialbyName(req.body.name);
     if(ifRawmaterialExist){
       return res.status(409).json({
         status: res.statusCode,
         message: 'Material already exists'
       });
     } else {
-      const addRawmaterial = await RawmaterialServices.createMaterial(ifRawmaterialExist);
+      const addRawmaterial = await RawmaterialServices.createMaterial(rawMaterial);
       return res.status(201).json({
         status: res.statusCode,
         message: 'Rawmaterial added successfully',
