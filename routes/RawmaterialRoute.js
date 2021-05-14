@@ -7,6 +7,6 @@ router.post('/addmaterial',rawMaterialController.addRawmaterial);
 router.get('/rawmaterials', rawMaterialController.getRawmaterials);
 router.get('/rawmaterials/:id',rawMaterialController.getSingleRawmaterial);
 router.delete('/deletematerial/:id',rawMaterialController.deleteRawMaterial);
-
+router.patch('/updatematerial/:id',rawMaterialController.updateRawmaterial);
 
 module.exports = router;
