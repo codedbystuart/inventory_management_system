@@ -19,7 +19,14 @@ static async createMaterial (material) {
     throw error;
   }
 }
-
+static async getAllMaterials () {
+  try {
+    const rawmaterials = await Rawmaterial.findAll();
+    return rawmaterials;
+  } catch (error) {
+    throw error;
+  }
+}
 }
 
 module.exports = RawmaterialServices;
