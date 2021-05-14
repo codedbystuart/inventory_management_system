@@ -14,8 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Rawmaterial.init({
-    name: DataTypes.STRING,
-    cost: DataTypes.FLOAT
+    name: {
+      type:DataTypes.STRING,
+      allowNull: null
+    },
+    cost: {
+      type: DataTypes.FLOAT,
+      allowNull: null
+    }
   }, {
     sequelize,
     modelName: 'Rawmaterial',
