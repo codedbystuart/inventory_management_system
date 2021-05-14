@@ -6,6 +6,7 @@ const router = express.Router();
 router.post('/addmaterial',rawMaterialController.addRawmaterial);
 router.get('/rawmaterials', rawMaterialController.getRawmaterials);
 router.get('/rawmaterials/:id',rawMaterialController.getSingleRawmaterial);
+router.delete('/deletematerial/:id',rawMaterialController.deleteRawMaterial);
 
 
 module.exports = router;
