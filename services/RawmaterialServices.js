@@ -46,6 +46,17 @@ static async deleteRawmaterial(id) {
     throw error;
   }
 }
+static async updateRawmaterial(id, updateMaterial) {
+  try {
+    const rawmaterial = await Rawmaterial.findOne({where:{id:Number(id)}});
+    if(!rawmaterial) return null;
+    await Rawmaterial.update(updateMaterial,{where:{id:Number(id)}});
+    return rawmaterial;
+  } catch (error) {
+    throw error;
+  }
+}
+
 }
 
 module.exports = RawmaterialServices;
