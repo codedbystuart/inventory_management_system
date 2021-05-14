@@ -36,6 +36,16 @@ static async getSingleMaterial (id) {
     throw error;
   }
 }
+static async deleteRawmaterial(id) {
+  try {
+    const rawmaterial = await Rawmaterial.findOne({where: {id:Number(id)}});
+    // if(!rawmaterial) return null;
+    await Rawmaterial.destroy({where:{id:Number(id)}});
+    return rawmaterial;
+  } catch (error) {
+    throw error;
+  }
+}
 }
 
 module.exports = RawmaterialServices;
