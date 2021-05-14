@@ -44,6 +44,24 @@ static async getRawmaterials (req, res, next) {
     return next(error);
   }
 }
+static async getSingleRawmaterial(req,res,next) {
+  try {
+    const rawmaterial = await RawmaterialServices.getSingleMaterial(req.params.id);
+    if(!rawmaterial){
+      return res.status(404).json({
+        status: res.statusCode,
+        message: 'Rawmaterial not found'
+      });
+    } else {
+      return res.status(200).json({
+        status: res.statusCode,
+        data:rawmaterial
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
 }
 
 module.exports = RawmaterialController;
