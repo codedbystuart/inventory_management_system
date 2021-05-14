@@ -26,6 +26,24 @@ static async addRawmaterial (req, res, next) {
     return next(error);
   }
 }
+static async getRawmaterials (req, res, next) {
+  try {
+    const rawmaterials = await RawmaterialServices.getAllMaterials();
+    if(!rawmaterials) {
+      return res.status(404).json({
+        status: res.statusCode,
+        message: 'Not rawmaterials found. Table empty'
+      });
+    } else {
+      return res.status(200).json({
+        status: res.statusCode,
+        data: rawmaterials
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
 }
 
 module.exports = RawmaterialController;
