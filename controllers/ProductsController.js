@@ -85,6 +85,32 @@ static async deleteProduct(req, res, next) {
     return next(error);
   }
 }
+static async updateProduct(req, res, next) {
+  try {
+    const productToUpdate = {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price
+
+    }
+    const updatedProduct = await ProductServices.productUpdate(req.params.id,productToUpdate);
+    if(!updatedProduct){
+      return res.status(409).json({
+        status: res.statusCode,
+        message: 'Product not found'
+      });
+    } else{
+      return res.status(201).json({
+        status: res.statusCode,
+        message:'Product updated successfully',
+        product:productToUpdate
+      });
+  
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
 }
 
 module.exports = ProductsController;
