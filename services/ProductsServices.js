@@ -12,6 +12,14 @@ class ProductServices {
       throw error;
     }
   }
+  static async createProduct(product) {
+    try {
+      const productToCreate = await Product.create(product);
+      return productToCreate;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = ProductServices;
