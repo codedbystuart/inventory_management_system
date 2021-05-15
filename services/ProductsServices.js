@@ -29,6 +29,14 @@ class ProductServices {
       throw error;
     }
   }
+  static async getAllProducts(){
+    try {
+      const products = await Product.findAll();
+      return products;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = ProductServices;
