@@ -47,6 +47,17 @@ class ProductServices {
       throw error;
     }
   }
+
+  static async productUpdate(id, updatedProduct) {
+    try {
+      const productToUpdate = await Product.findOne({where:{id:Number(id)}});
+      if(!productToUpdate) return null;
+      await Product.update(updatedProduct, {where:{id:Number(id)}});
+      return productToUpdate;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = ProductServices;
