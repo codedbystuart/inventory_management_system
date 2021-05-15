@@ -85,11 +85,11 @@ static async deleteRawMaterial(req, res, next) {
 }
 static async updateRawmaterial(req,res,next){
   try {
-    const rawmaterial = {
+    const rawmaterialToUpdate = {
       name: req.body.name,
       cost: req.body.cost
     }
-    const updateRawmaterial = await RawmaterialServices.updateRawmaterial(req.params.id,rawmaterial);
+    const updateRawmaterial = await RawmaterialServices.updateRawmaterial(req.params.id,rawmaterialToUpdate);
     if(!updateRawmaterial) {
       return res.status(409).json({
         status: res.statusCode,
@@ -99,7 +99,7 @@ static async updateRawmaterial(req,res,next){
       return res.status(201).json({
         status: res.statusCode,
         message: 'Rawmaterial updated successfully',
-        rawmaterial: updateRawmaterial
+        rawmaterial: rawmaterialToUpdate
       });
     }
   } catch (error) {
