@@ -47,7 +47,24 @@ class ProductsController{
       return next(error);
     }
   }
-
+static async getSingleProduct (req, res, next) {
+  try {
+    const product = await ProductServices.findProductbyId(req.params.id);
+    if(!product){
+      return res.status(409).json({
+        status: res.statusCode,
+        message: 'Product not found'
+      });
+    } else {
+      return res.status(200).json({
+        status: res.statusCode,
+        product: product
+      });
+    }
+  } catch (error) {
+    return next(error);
+  }
+}
 }
 
 module.exports = ProductsController;
